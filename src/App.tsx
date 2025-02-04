@@ -62,7 +62,7 @@ function App() {
 
 
   return (
-    <LoaderProvider>x
+    <LoaderProvider>
       <div
         style={{
           minHeight: '100vh',

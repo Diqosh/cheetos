@@ -1,15 +1,15 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, {useMemo, useRef, useState} from 'react';
+import {motion, useInView} from 'framer-motion';
 import left from './assets/left.png';
 import right from './assets/right.png';
 import heartIcon from './assets/heart.png';
 import download from './assets/download.png';
 import slbtn from './assets/sliderButton.png';
-import { Answer } from "@/components/Test/models/types.ts";
-import { useMediaQuery } from "react-responsive";
-import { ResultsSection } from "@/components/TestResult/animation/result.tsx";
+import {Answer} from "@/components/Test/models/types.ts";
+import {useMediaQuery} from "react-responsive";
+import {ResultsSection} from "@/components/TestResult/animation/result.tsx";
 
-const results = {
+const results: Record<string, { title: string; description: string }> = {
   A: {
     title: "Безнадежный романтик!",
     description: "Тебе знакомо чувство любви, и ты стремишься одаривать им своего партнера. Ты продумываешь День святого Валентина до мелочей, не упуская важных деталей — будь это милый сюрприз, букет любимых цветов или любовное послание. Для тебя этот праздник — повод напомнить любимому человеку, как сильно ты его ценишь."
@@ -28,10 +28,10 @@ const results = {
   }
 };
 
-const AnimatedWord = ({ word, index, inView }: { word: string; index: number; inView: boolean }) => {
+const AnimatedWord = ({word, index, inView}: { word: string; index: number; inView: boolean }) => {
   return (
     <motion.span
-      initial={{ scale: 0, opacity: 1 }}
+      initial={{scale: 0, opacity: 1}}
       animate={inView ? {
         scale: 1,
         opacity: [1, 1, 0.15],
@@ -60,11 +60,22 @@ const AnimatedWord = ({ word, index, inView }: { word: string; index: number; in
   );
 };
 
-export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
-  console.log(answers)
+export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
+
+  const normalizedAnswers: [string, number][] = Object.keys(results).map((key) => [
+    key,
+    answers.filter((answer) => answer === key).length
+  ]);
+
+  const sortedArray = normalizedAnswers.sort(
+    (a, b) => (b[1] as number) - (a[1] as number) || (a[0] as string).localeCompare(b[0] as string)
+  );
+  console.log(sortedArray)
+
+
   const componentRef = useRef(null);
-  const inView = useInView(componentRef, { once: true, amount: 0.3 });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const inView = useInView(componentRef, {once: true, amount: 0.3});
+  const isMobile = useMediaQuery({maxWidth: 768});
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState(0);
 
@@ -85,8 +96,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  const currentResult = results[resultTypes[currentSlide] as keyof typeof results];
-
+  const currentResult = results[sortedArray[currentSlide][0]];
   return (
     <div className="w-full min-h-screen h-full flex flex-col overflow-hidden" ref={componentRef}>
       <div className="relative flex-1">
@@ -102,11 +112,11 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
             `}>
               {textContent.map((word, index) => (
                 <React.Fragment key={index}>
-                  <AnimatedWord word={word} index={index} inView={inView} />
+                  <AnimatedWord word={word} index={index} inView={inView}/>
                   {isMobile ? (
-                    (index === 0 || index === 2 || index === 4) && <br />
+                    (index === 0 || index === 2 || index === 4) && <br/>
                   ) : (
-                    (index === 1 || index === 3) && <br />
+                    (index === 1 || index === 3) && <br/>
                   )}
                 </React.Fragment>
               ))}
@@ -120,29 +130,29 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
             <div className="relative w-full flex flex-col items-center">
               <div className="flex w-full justify-center md:justify-between items-center">
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.5 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.5}}
                   className="hidden md:block w-8 min-w-8 hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-9 fit-contain rotate-180" />
+                  <img src={slbtn} alt="Previous" className="w-9 fit-contain rotate-180"/>
                 </motion.button>
 
                 <div className="max-w-md relative mt-10">
                   <motion.img
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-                    transition={{ delay: 2, duration: 0.8, type: "spring" }}
+                    initial={{y: -100, opacity: 0}}
+                    animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
+                    transition={{delay: 2, duration: 0.8, type: "spring"}}
                     src={left}
                     alt="Left decoration"
                     className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -left-15 md:-left-25 z-0"
                   />
 
                   <motion.div
-                    initial={{ y: -200, opacity: 0 }}
-                    animate={inView ? { y: 0, opacity: 1 } : { y: -200, opacity: 0 }}
-                    transition={{ delay: 1.7, duration: 1, type: "spring" }}
+                    initial={{y: -200, opacity: 0}}
+                    animate={inView ? {y: 0, opacity: 1} : {y: -200, opacity: 0}}
+                    transition={{delay: 1.7, duration: 1, type: "spring"}}
                   >
                     <motion.img
                       src={heartIcon}
@@ -150,7 +160,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
                       className="w-[250px] md:w-[380px] mb-10 z-20 relative"
                       animate={inView ? {
                         scale: [1, 1.05, 1]
-                      } : { scale: 0 }}
+                      } : {scale: 0}}
                       transition={{
                         duration: 2,
                         repeat: Infinity,
@@ -161,9 +171,9 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
                   </motion.div>
 
                   <motion.img
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-                    transition={{ delay: 2, duration: 0.8, type: "spring" }}
+                    initial={{y: -100, opacity: 0}}
+                    animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
+                    transition={{delay: 2, duration: 0.8, type: "spring"}}
                     src={right}
                     alt="Right decoration"
                     className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -right-15 md:-right-25 z-0"
@@ -171,52 +181,52 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({ answers }) => {
                 </div>
 
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.5 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.5}}
                   className="hidden md:block w-8 min-w-8 hover:scale-110 transition-transform"
                   onClick={nextSlide}
                 >
-                  <img src={slbtn} alt="Next" className="w-8 fit-contain" />
+                  <img src={slbtn} alt="Next" className="w-8 fit-contain"/>
                 </motion.button>
 
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.7 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.7}}
                   className="absolute right-1/3 bottom-[30px] w-[100px] hidden md:block z-21 hover:scale-105 transition-transform"
                 >
-                  <img src={download} alt="Download" className="fit-contain" />
+                  <img src={download} alt="Download" className="fit-contain"/>
                 </motion.button>
               </div>
 
               {/* Mobile Navigation */}
               <div className="md:hidden relative w-full flex justify-between align-center mt-4">
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.5 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.5}}
                   className="my-auto rotate-180 hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-9 fit-contain" />
+                  <img src={slbtn} alt="Previous" className="w-9 fit-contain"/>
                 </motion.button>
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.7 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.7}}
                   className="w-[100px] block hover:scale-105 transition-transform"
                 >
-                  <img src={download} alt="Download" className="fit-contain" />
+                  <img src={download} alt="Download" className="fit-contain"/>
                 </motion.button>
                 <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 2.5 }}
+                  initial={{opacity: 0}}
+                  animate={inView ? {opacity: 1} : {opacity: 0}}
+                  transition={{delay: 2.5}}
                   className="my-auto hover:scale-110 transition-transform"
                   onClick={nextSlide}
                 >
-                  <img src={slbtn} alt="Next" className="w-8 fit-contain" />
+                  <img src={slbtn} alt="Next" className="w-8 fit-contain"/>
                 </motion.button>
               </div>
             </div>
