@@ -53,7 +53,7 @@ const TelegramStickers = () => {
       />
 
       <div className="container mx-auto px-4 pt-16 relative">
-        <div className="text-center mb-12 mt-10">
+        <div className="text-center mb-12 mt-15">
           <motion.h1
             className="text-4xl font-bold text-black mb-8"
             initial={{ opacity: 0, y: -20 }}
@@ -63,7 +63,7 @@ const TelegramStickers = () => {
           </motion.h1>
 
           <motion.a
-            href="#download-stickers" // Replace with actual download link
+            href="https://t.me/addstickers/CheetosLoves" // Replace with actual download link
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -73,7 +73,7 @@ const TelegramStickers = () => {
           </motion.a>
         </div>
 
-        <div className="flex justify-around items-center flex-wrap gap-4 -mt-30 mb-55">
+        <div className="flex justify-around items-center flex-wrap gap-4 sm:-mt-30 mb-55 ">
           <motion.div
             variants={stickerVariants}
             initial="initial"

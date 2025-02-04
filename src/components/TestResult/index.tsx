@@ -4,27 +4,38 @@ import left from './assets/left.png';
 import right from './assets/right.png';
 import heartIcon from './assets/heart.png';
 import download from './assets/download.png';
+import roman from './assets/roman.png';
+import dusha from './assets/dusha.png';
+import phylosophy from './assets/phylosophy.png';
+
+import val from './assets/Valentine.png';
+
 import slbtn from './assets/sliderButton.png';
+
 import {Answer} from "@/components/Test/models/types.ts";
 import {useMediaQuery} from "react-responsive";
 import {ResultsSection} from "@/components/TestResult/animation/result.tsx";
 
-const results: Record<string, { title: string; description: string }> = {
+const results: Record<string, { title: string; description: string, image: string }> = {
   A: {
     title: "Безнадежный романтик!",
-    description: "Тебе знакомо чувство любви, и ты стремишься одаривать им своего партнера. Ты продумываешь День святого Валентина до мелочей, не упуская важных деталей — будь это милый сюрприз, букет любимых цветов или любовное послание. Для тебя этот праздник — повод напомнить любимому человеку, как сильно ты его ценишь."
+    description: "Тебе знакомо чувство любви, и ты стремишься одаривать им своего партнера. Ты продумываешь День святого Валентина до мелочей, не упуская важных деталей — будь это милый сюрприз, букет любимых цветов или любовное послание. Для тебя этот праздник — повод напомнить любимому человеку, как сильно ты его ценишь.",
+    image: roman
   },
   B: {
     title: "Душа любой компании!",
-    description: "Ты обожаешь веселиться и не особо следуешь традициям, потому что праздник у тебя каждый день. Тебя обожают друзья, потому что ты всегда за «любой кипиш». Для тебя этот праздник — повод повеселиться и провести день с близкими друзьями."
+    description: "Ты обожаешь веселиться и не особо следуешь традициям, потому что праздник у тебя каждый день. Тебя обожают друзья, потому что ты всегда за «любой кипиш». Для тебя этот праздник — повод повеселиться и провести день с близкими друзьями.",
+    image: dusha
   },
   C: {
     title: "Настоящий философ!",
-    description: "Ты не особо привязан/а к этому празднику, потому что веришь, что любовь не подвластна датам. Ты ценишь уединение и личную жизнь, возможно, предпочитаешь держать ее в тайне. Для тебя этот праздник — просто еще один повод для людей тратить деньги на подарки/сюрпризы и признаваться друг другу в любви."
+    description: "Ты не особо привязан/а к этому празднику, потому что веришь, что любовь не подвластна датам. Ты ценишь уединение и личную жизнь, возможно, предпочитаешь держать ее в тайне. Для тебя этот праздник — просто еще один повод для людей тратить деньги на подарки/сюрпризы и признаваться друг другу в любви.",
+    image: phylosophy
   },
   D: {
     title: "Сам себе Валентин!",
-    description: "Ты ценишь комфорт в любых его проявлениях: вечер за просмотром любимого сериала и вкусной едой — уже праздник. Для тебя 14 февраля — праздник заботы о себе, когда можно сделать что-то приятное именно для себя."
+    description: "Ты ценишь комфорт в любых его проявлениях: вечер за просмотром любимого сериала и вкусной едой — уже праздник. Для тебя 14 февраля — праздник заботы о себе, когда можно сделать что-то приятное именно для себя.",
+    image: val
   }
 };
 
@@ -150,14 +161,16 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   />
 
                   <motion.div
+                    className="relative w-[250px] md:w-[380px] h-[250px] md:h-[380px]"
                     initial={{y: -200, opacity: 0}}
                     animate={inView ? {y: 0, opacity: 1} : {y: -200, opacity: 0}}
                     transition={{delay: 1.7, duration: 1, type: "spring"}}
                   >
+                    {/* Heart Image (moved to be first in DOM) */}
                     <motion.img
                       src={heartIcon}
                       alt="Heart"
-                      className="w-[250px] md:w-[380px] mb-10 z-20 relative"
+                      className="w-[250px] md:w-[380px] mb-10 relative z-0"
                       animate={inView ? {
                         scale: [1, 1.05, 1]
                       } : {scale: 0}}
@@ -167,6 +180,13 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                         repeatType: "reverse",
                         delay: 2.5
                       }}
+                    />
+
+                    {/* Top Result Image */}
+                    <img
+                      src={currentResult.image}
+                      alt=""
+                      className="absolute left-1/2 -translate-x-1/2 top-16 w-40 z-50"
                     />
                   </motion.div>
 

@@ -96,12 +96,10 @@ export const ForWhom = () => {
         {/* Description */
         }
         <p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-black leading-relaxed max-w-5xl mx-auto text-center mb-15">
-          КО ДНЮ ВСЕХ ВЛЮБЛЕННЫХ ЧЕСТЕР ПОДГОТОВИЛ ДВЕ УПАКОВКИ ЛЮБИМЫХ CHEETOS —
-          ДЛЯ НЕЕ И ДЛЯ НЕГО, В РОЗОВОМ И ЧЕРНОМ ЦВЕТАХ. ТЕПЕРЬ ПРИЗНАВАТЬСЯ В
-          ЧУВСТВАХ МОЖНО ДАЖЕ ЧЕРЕЗ СНЕКИ! ВЫБИРАЙ В МАГАЗИНАХ СВОЕГО ГОРОДА
-          CHEETOS СО ВКУСОМ СЫРА. ПАЧКА ПОЛНАЯ ВЕСЕЛЬЯ!
-        </p>
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-black leading-relaxed max-w-5xl mx-auto text-center mb-15 uppercase">
+          Ко Дню всех влюбленных Честер подготовил две упаковки Cheetos — для нее и для него, в розовом и черном цветах.
+          А еще в форме сердечек и с любимым сырным вкусом! Теперь признаваться в чувствах можно даже через снеки!
+          Выбирай в магазинах своего города Cheetos. Пробуй, влюбляйся, вдохновляйся! </p>
       </div>
     </section>
   )
