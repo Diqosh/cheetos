@@ -71,6 +71,7 @@ function App() {
           position: 'relative',
           top: 0,
           left: 0
+          // maxWidth: "1680px"
         }}
         className="overflow-x-hidden w-full"
       >

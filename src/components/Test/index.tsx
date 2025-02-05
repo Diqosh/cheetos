@@ -18,6 +18,7 @@ export const questions: Question[] = [
   {
     id: 1,
     text: "ЧТО ТЫ ПЛАНИРУЕШЬ <br/> ДЕЛАТЬ В ДЕНЬ </br> СВЯТОГО ВАЛЕНТИНА?",
+    textFull: "ЧТО ТЫ ПЛАНИРУЕШЬ ДЕЛАТЬ <br/> В ДЕНЬ СВЯТОГО ВАЛЕНТИНА?",
     options: [
       {id: 'A', text: "Романтический ужин в ресторане с любимым человеком"},
       {id: 'B', text: "Вечеринка с друзьями/подругами — одиночество не для меня!"},
@@ -27,7 +28,8 @@ export const questions: Question[] = [
   },
   {
     id: 2,
-    text: "КАКОЙ ПОДАРОК ТЫ БЫ </br ПРЕДПОЧЕЛ/ПРЕДПОЧЛА > ПОЛУЧИТЬ В ЭТОТ ДЕНЬ?",
+    text: "КАКОЙ ПОДАРОК ТЫ БЫ </br> ПРЕДПОЧЕЛ/ПРЕДПОЧЛА </br> ПОЛУЧИТЬ В ЭТОТ ДЕНЬ?",
+    textFull: "КАКОЙ ПОДАРОК ТЫ БЫ <br/>ПРЕДПОЧЕЛ/ПРЕДПОЧЛА ПОЛУЧИТЬ В ЭТОТ ДЕНЬ?",
     options: [
       {id: 'A', text: "Букет цветов или что-нибудь из моего вишлиста"},
       {id: 'B', text: "Билеты на концерт любимого артиста или поход на квест"},
@@ -38,6 +40,7 @@ export const questions: Question[] = [
   {
     id: 3,
     text: "КАКОЙ СЕРИАЛ ЛУЧШЕ </br> ВСЕГО ПЕРЕДАЕТ ТВОЕ </br> НАСТРОЕНИЕ НА 14 ФЕВРАЛЯ?",
+    textFull: "КАКОЙ СЕРИАЛ ЛУЧШЕ ВСЕГО <br/>ПЕРЕДАЕТ ТВОЕ НАСТРОЕНИЕ НА 14 ФЕВРАЛЯ?",
     options: [
       {id: 'A', text: "«Я никогда не…»"},
       {id: 'B', text: "«Очень странные дела»"},
@@ -48,6 +51,7 @@ export const questions: Question[] = [
   {
     id: 4,
     text: "КАКАЯ ИДЕАЛЬНАЯ ДЛЯ </br> ТЕБЯ ВАЛЕНТИНКА?",
+    textFull: "КАКАЯ ИДЕАЛЬНАЯ ДЛЯ ТЕБЯ ВАЛЕНТИНКА?",
     options: [
       {id: 'A', text: "Классическая открытка с признанием в любви"},
       {id: 'B', text: "Мем или шуточное послание для поднятия настроения"},
@@ -57,7 +61,8 @@ export const questions: Question[] = [
   },
   {
     id: 5,
-    text: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ ЛИ </br> ТЫ В ЛЮБВИ СВОЕМУ </br> ПАРТНЕРУ КОГДА-НИБУДЬ?",
+    text: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ </br> ЛИ  ТЫ В ЛЮБВИ СВОЕМУ </br> ПАРТНЕРУ КОГДА-НИБУДЬ?",
+    textFull: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ ЛИ ТЫ В ЛЮБВИ СВОЕМУ ПАРТНЕРУ КОГДА-НИБУДЬ?",
     options: [
       {id: 'A', text: "Конечно! И не один раз"},
       {id: 'B', text: "Если я испытываю чувства, то мне несложно признаться"},
@@ -127,12 +132,13 @@ export const Test = ({answers, setAnswers}: Props) => {
   };
 
   return (
-    <div className="min-h-screen w-full relative p-4 pt-30">
-      <div
-        className="absolute inset-0 bg-cover bg-no-repeat"
-        style={{backgroundImage: `url(${bg})`}}
+    <div className="w-full relative p-4 py-30 z-2">
+      <img
+        src={bg}
+        alt="bg"
+        className="absolute inset-0 bg-cover h-full w-full bg-no-repeat"
       />
-      <div className="container mx-auto max-w-3xl pt-16 relative">
+      <div className="container max-w-[1680px] mx-auto pt-16 relative">
         <div>
           <div className="text-center mb-8">
             <div className="relative flex justify-center items-center">
@@ -141,7 +147,7 @@ export const Test = ({answers, setAnswers}: Props) => {
                   className="relative"
                   key={currentQuestion}
                   initial={{width: 0}}
-                  animate={{width: (isHideHands ? "100%" : "50%"), textWrap: "nowrap"}}
+                  animate={{width: (isHideHands ? "100%" : "80%"), textWrap: "nowrap"}}
                   exit={{width: 0}}
                   transition={{duration: 0.4}}
                 >
@@ -156,8 +162,8 @@ export const Test = ({answers, setAnswers}: Props) => {
                     className="absolute w-34 min-w-34 object-contain -bottom-9 -left-29"
                   />
                   <h2
-                    className="text-2xl font-bold text-black bg-white py-2 px-4 rounded-lg overflow-hidden nowrap"
-                    dangerouslySetInnerHTML={{__html: questions[currentQuestion].text}}
+                    className="text-2xl font-bold text-black bg-white py-2 px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center"
+                    dangerouslySetInnerHTML={{__html: isHideHands ? questions[currentQuestion].text : questions[currentQuestion].textFull}}
                   />
                   <img
                     src={right}
@@ -174,21 +180,21 @@ export const Test = ({answers, setAnswers}: Props) => {
             </div>
 
             <div className="flex justify-center items-center mt-10">
-              <div className="min-w-80 flex justify-between align-center">
+              <div className="min-w-80 flex justify-between align-center gap-[30px]">
                 <button
                   onClick={handlePrevious}
                   disabled={currentQuestion === 0}
-                  className="bg-gray-500 text-white px-6 py-2 rounded-full disabled:opacity-50 border-4 border-white cursor-pointer"
+                  className="bg-gray-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer"
                 >
                   НАЗАД
                 </button>
-                <span className="text-white font-bold my-auto">
+                <span className="text-white font-bold my-auto text-xl md:text-[36px]">
                   {currentQuestion + 1}/{questions.length}
                 </span>
                 <button
                   onClick={handleNext}
                   disabled={!selectedOption}
-                  className="bg-orange-500 text-white px-6 py-2 rounded-full disabled:opacity-50 border-4 border-white cursor-pointer"
+                  className="bg-orange-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer"
                 >
                   {currentQuestion === questions.length - 1 ? 'РЕЗУЛЬТАТ' : 'ДАЛЕЕ'}
                 </button>
@@ -210,7 +216,7 @@ export const Test = ({answers, setAnswers}: Props) => {
                   exit="exit"
                   custom={index}
                   onClick={() => setSelectedOption(option.id)}
-                  className={`w-full p-4 bg-white rounded-xl text-left shadow-lg transition-all
+                  className={`w-full p-4 bg-white rounded-xl text-left shadow-lg transition-all text-[20px] lg:text-[28px] md:min-h-[116px]
                     ${selectedOption === option.id ? 'border-4 border-black-500' : 'border-4 border-transparent'}`}
                 >
                   <div className="flex items-center gap-4">

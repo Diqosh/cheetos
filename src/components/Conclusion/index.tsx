@@ -5,20 +5,17 @@ import chesterImage from "@/components/Main/assets/heart.png";
 export const Credits = () => {
   const credits = [
     {role: 'Директор по рекламе', name: 'Лейла Балтиева'},
-    {role: 'Директор по спецпроектам', name: 'Константин Герлиц'},
-    {role: 'Менеджер по рекламе', name: 'Мурад Джумагельдиев'},
-    {role: 'Креативный менеджер', name: 'Лина Тажетдинова'},
-    {role: 'Продакт менеджер', name: 'Елена Васярина'},
-    {role: 'Дизайнер', name: 'Альшир Мажитов'},
-    {role: 'Front-End Dev', name: 'Dimashka'},
-    {role: 'Редактор', name: 'Айгерим Калиахарова'},
+    {role: 'Директор по спецпроектам', name: 'Константин Герлих'},
+    {role: 'Менеджер по рекламе', name: 'Мурад Джумагельдыев'},
+    {role: 'Креативный менеджер', name: 'Лана Тажетдинова'},
+    {role: 'Продакт менеджер', name: 'Елена Басария'},
+    {role: 'Дизайнер', name: 'Алишер Мажитов'},
+    {role: 'Front-End Dev', name: 'Тлеужанулы Динмухаммед'},
+    {role: 'Редактор', name: 'Айгерим Кайназарова'},
   ];
 
   const containerVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20
-    },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -30,31 +27,27 @@ export const Credits = () => {
   };
 
   const itemVariants = {
-    hidden: {
-      opacity: 0,
-      x: -20
-    },
+    hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.5
-      }
+      transition: { duration: 0.5 }
     }
   };
 
   return (
-    <div className="min-h-2/3  w-full">
-      <div className="container mx-auto px-4 py-8 md:py-16">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-20">
-          {/* Left Section with Title and Logos */}
-          <div className="flex flex-col items-center lg:items-start">
-            <div className={"flex lg:hidden"}>
+    <div className="min-h-2/3 w-full max-w-[1680px] mx-auto">
+      <div className="container mx-auto py-8 md:py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 md:gap-8 lg:gap-16 xl:gap-20">
+          {/* Left Section */}
+          <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+            {/* Mobile Logo */}
+            <div className="flex lg:hidden mb-6 md:mb-8">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-60 mb-10"
+                className="w-40 sm:w-48 md:w-56"
               >
                 <img
                   src={cheetosLogo}
@@ -63,22 +56,23 @@ export const Credits = () => {
                 />
               </motion.div>
             </div>
+
+            {/* Title */}
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-4xl md:text-6xl font-bold mb-6 text-[#FF4500] text-center lg:text-left"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 lg:mb-8 text-black text-center lg:text-right"
             >
-              НАД ПРОЕКТОМ РАБОТАЛИ:
+              НАД ПРОЕКТОМ <br/>РАБОТАЛИ:
             </motion.h2>
 
-            {/* Logo Container */}
-            <div className="hidden lg:flex items-center gap-4 md:gap-8">
-              {/* Heart Image */}
+            {/* Desktop Logos */}
+            <div className="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8 justify-between w-full">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="w-24 md:w-32"
+                className="w-16 md:w-20 lg:w-[200px] xl:w-[246px]"
               >
                 <img
                   src={chesterImage}
@@ -87,12 +81,11 @@ export const Credits = () => {
                 />
               </motion.div>
 
-              {/* Cheetos Logo */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-32 md:w-40"
+                className="w-24 md:w-28 lg:w-[200px] xl:w-[246px]"
               >
                 <img
                   src={cheetosLogo}
@@ -108,18 +101,18 @@ export const Credits = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full max-w-md lg:max-w-lg"
+            className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl"
           >
             {credits.map((credit, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-center sm:text-left"
+                className="mb-3 sm:mb-4 md:mb-5 flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 md:gap-4 text-center sm:text-left"
               >
-                <span className="text-sm md:text-base text-gray-600 font-medium whitespace-nowrap">
+                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium">
                   {credit.role}
                 </span>
-                <span className="text-base md:text-lg font-semibold">
+                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold">
                   {credit.name}
                 </span>
               </motion.div>

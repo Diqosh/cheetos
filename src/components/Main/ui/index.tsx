@@ -19,7 +19,7 @@ export const Main = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <div ref={ref} className="flex flex-col justify-center items-center min-h-2/3 relative overflow-hidden">
+    <div ref={ref} className="flex flex-col justify-center items-center min-h-2/3 relative overflow-hidden max-w-[1680px] mx-auto">
       <HeartAnimation />
 
       <motion.div

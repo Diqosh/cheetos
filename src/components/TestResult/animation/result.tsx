@@ -49,7 +49,7 @@ export const ResultsSection: React.FC<{
 
   return (
     <motion.div
-      className="relative h-64 md:h-48 overflow-hidden"
+      className="relative max-w-[1680px] flex justify-between mx-auto"
       initial="initial"
       animate={inView ? "visible" : "initial"}
       variants={{
@@ -82,7 +82,7 @@ export const ResultsSection: React.FC<{
               prevSlide();
             }
           }}
-          className="absolute inset-0 flex flex-col md:flex-row gap-10 items-center justify-center max-w-4/5 md:max-w-3xl mx-auto"
+          className="absolute inset-0 flex flex-col lg:flex-row gap-10 items-center lg:items-start justify-center w-full mx-auto px-4 mb-20"
         >
           <motion.div
             className="text-3xl md:text-6xl uppercase font-bold text-center text-orange-500"
@@ -93,7 +93,7 @@ export const ResultsSection: React.FC<{
             {currentResult.title}
           </motion.div>
           <motion.div
-            className="text-sm font-light"
+            className="text-lg md:text-2xl font-light text-center lg:text-left"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}

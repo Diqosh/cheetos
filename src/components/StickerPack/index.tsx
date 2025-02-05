@@ -2,6 +2,11 @@ import {motion, Variants} from 'framer-motion';
 import sticker1 from './assets/sticker1-min.png';
 import sticker2 from './assets/sticker2-min.png';
 import sticker3 from './assets/sticker3-min.png';
+import pattern1 from './assets/patter1.png';
+import pattern2 from './assets/pattern2.png';
+import pattern3 from './assets/pattern3.png';
+import pattern4 from './assets/pattern4.png';
+
 import bg from "@/components/ForWhom/assets/background.png";
 import {useMediaQuery} from "react-responsive";
 
@@ -21,11 +26,11 @@ const TelegramStickers = () => {
       transition: {
         scale: {
           repeat: Infinity,
-          duration: 2
+          duration: 4
         },
         rotate: {
           repeat: Infinity,
-          duration: 2
+          duration: 4
         },
         type: "spring",
         stiffness: 200,
@@ -52,10 +57,27 @@ const TelegramStickers = () => {
         style={{backgroundImage: `url(${bg})`}}
       />
 
+      <div
+        className="absolute left-0 top-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        style={{backgroundImage: `url(${pattern1})`}}
+      />
+      <div
+        className="absolute right-0-0 top-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        style={{backgroundImage: `url(${pattern2})`}}
+      />
+      <div
+        className="absolute left-0 bottom-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        style={{backgroundImage: `url(${pattern3})`}}
+      />
+      <div
+        className="absolute right-0 bottom-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        style={{backgroundImage: `url(${pattern4})`}}
+      />
+
       <div className="container mx-auto px-4 pt-16 relative">
-        <div className="text-center mb-12 mt-15">
+        <div className="text-center mb-12 mt-15 lg:mt-30">
           <motion.h1
-            className="text-4xl font-bold text-black mb-8"
+            className="text-[48px] xl:text-[100px] font-bold text-black mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -67,7 +89,7 @@ const TelegramStickers = () => {
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
-            className="inline-block bg-[#FF69B4] text-white px-7 py-4 font-bold text-5xl rounded-3xl shadow-2xl border-4 border-white"
+            className="inline-block bg-[#FF69B4] text-white px-5 lg:px-10 py-1.5 font-bold text-[48px] xl:text-[100px] rounded-[16px] lg:rounded-[30px] shadow-2xl border-[10px] border-white"
           >
             СКАЧАТЬ
           </motion.a>
@@ -78,7 +100,7 @@ const TelegramStickers = () => {
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className="w-64"
+            className="w-[210px] xl:w-[434px]"
           >
             <img src={sticker1} alt="Chester on donut sticker" className="w-full h-auto" />
           </motion.div>
@@ -87,7 +109,7 @@ const TelegramStickers = () => {
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className={`w-64 ${isChange ? "" : "mt-30"}`}
+            className={`w-[210px] xl:w-[434px] ${isChange ? "" : "mt-30 lg:mt-50"}`}
           >
             <img src={sticker2} alt="Dancing Chester sticker" className="w-full h-auto" />
           </motion.div>
@@ -96,7 +118,7 @@ const TelegramStickers = () => {
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className="w-64"
+            className="w-[210px] xl:w-[434px]"
           >
             <img src={sticker3} alt="Chester with heart box sticker" className="w-full h-auto transform rotate-12" />
           </motion.div>

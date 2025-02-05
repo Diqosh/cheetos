@@ -2,10 +2,12 @@ import {motion, useInView} from 'framer-motion';
 import chesterImage from '@/components/Main/assets/heart.png';
 import tiger from './assets/tiger_l.png';
 import start from './assets/start.png';
+import startHovered from './assets/start_hovered.png';
 import {useMediaQuery} from "react-responsive";
 import {useEffect, useRef, useState} from "react";
 
 export const TestInto = () => {
+  const [imgSrc, setImgSrc] = useState(start);
   const tigerChange = useMediaQuery({maxWidth: 633});
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +45,7 @@ export const TestInto = () => {
     };
 
   return (
-    <div className="py-20 relative" ref={componentRef}>
+    <div className="py-20 relative max-w-[1680px] mx-auto" ref={componentRef}>
       <div className="container flex flex-col mx-auto px-4 relative z-10">
         <motion.span
           className={`text-3xl lg:text-5xl mb-2 tracking-wider ${tigerChange ? "-ml-8 text-center mb-10" : ""}`}
@@ -140,10 +142,12 @@ export const TestInto = () => {
               onClick={handleClick}
             />
             <motion.img
-              src={start}
+              src={imgSrc}
               alt="start"
               className={`relative w-60 h-auto fit-contain z-index-2 ${tigerChange ? "mx-auto mt-10" : ""}`}
-              whileTap={{scale: 0.9}}
+              onMouseEnter={() => setImgSrc(startHovered)}
+              onMouseLeave={() => setImgSrc(start)}
+              whileTap={{ scale: 0.9 }}
               onClick={handleClick}
             />
           </motion.div>

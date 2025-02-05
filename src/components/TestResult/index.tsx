@@ -109,10 +109,10 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
 
   const currentResult = results[sortedArray[currentSlide][0]];
   return (
-    <div className="w-full min-h-screen h-full flex flex-col overflow-hidden" ref={componentRef}>
+    <div className="w-full h-full flex flex-col overflow-hidden z-1" ref={componentRef}>
       <div className="relative flex-1">
         {/* Background Text */}
-        <div className="absolute inset-0 text-[#FF4500] font-bold flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 text-[#FF4500] font-bold flex items-start justify-center pointer-events-none">
           <div className={`
             ${isMobile ? 'px-8 w-[320px]' : 'px-16 w-[800px]'}
             mx-auto text-center
@@ -127,7 +127,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   {isMobile ? (
                     (index === 0 || index === 2 || index === 4) && <br/>
                   ) : (
-                    (index === 1 || index === 3) && <br/>
+                    (index === 1 || index === 2) && <br/>
                   )}
                 </React.Fragment>
               ))}
@@ -139,26 +139,19 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
         <div className="flex items-center justify-between pt-8 pb-12 relative z-10">
           <div className="relative flex-1 mx-8">
             <div className="relative w-full flex flex-col items-center">
-              <div className="flex w-full justify-center md:justify-between items-center">
+              <div className="flex w-full justify-center md:justify-between items-center max-w-[1680px] mx-auto">
                 <motion.button
                   initial={{opacity: 0}}
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.5}}
-                  className="hidden md:block w-8 min-w-8 hover:scale-110 transition-transform"
+                  className="hidden md:block  hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-9 fit-contain rotate-180"/>
+                  <img src={slbtn} alt="Previous" className="w-[70px] fit-contain rotate-180"/>
                 </motion.button>
 
                 <div className="max-w-md relative mt-10">
-                  <motion.img
-                    initial={{y: -100, opacity: 0}}
-                    animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
-                    transition={{delay: 2, duration: 0.8, type: "spring"}}
-                    src={left}
-                    alt="Left decoration"
-                    className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -left-15 md:-left-25 z-0"
-                  />
+
 
                   <motion.div
                     className="relative w-[250px] md:w-[380px] h-[250px] md:h-[380px]"
@@ -181,12 +174,20 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                         delay: 2.5
                       }}
                     />
+                    <motion.img
+                      initial={{y: -100, opacity: 0}}
+                      animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
+                      transition={{delay: 2, duration: 0.8, type: "spring"}}
+                      src={left}
+                      alt="Left decoration"
+                      className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -left-15 md:-left-25 z-0"
+                    />
 
                     {/* Top Result Image */}
                     <img
                       src={currentResult.image}
                       alt=""
-                      className="absolute left-1/2 -translate-x-1/2 top-16 w-40 z-50"
+                      className={`absolute left-1/2 -translate-x-1/2 ${isMobile ? "top-10" : "top-15" } w-[126px] md:w-[201px] z-50`}
                     />
                   </motion.div>
 
@@ -204,17 +205,17 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   initial={{opacity: 0}}
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.5}}
-                  className="hidden md:block w-8 min-w-8 hover:scale-110 transition-transform"
+                  className="hidden md:block hover:scale-110 transition-transform"
                   onClick={nextSlide}
                 >
-                  <img src={slbtn} alt="Next" className="w-8 fit-contain"/>
+                  <img src={slbtn} alt="Next" className="w-[70px] fit-contain"/>
                 </motion.button>
 
                 <motion.button
                   initial={{opacity: 0}}
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.7}}
-                  className="absolute right-1/3 bottom-[30px] w-[100px] hidden md:block z-21 hover:scale-105 transition-transform"
+                  className="absolute left-1/2 -translate-x-1 bottom-[30px] w-[100px] hidden md:block z-21 hover:scale-105 transition-transform"
                 >
                   <img src={download} alt="Download" className="fit-contain"/>
                 </motion.button>
@@ -229,7 +230,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   className="my-auto rotate-180 hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-9 fit-contain"/>
+                  <img src={slbtn} alt="Previous" className="w-15 fit-contain"/>
                 </motion.button>
                 <motion.button
                   initial={{opacity: 0}}
@@ -246,7 +247,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   className="my-auto hover:scale-110 transition-transform"
                   onClick={nextSlide}
                 >
-                  <img src={slbtn} alt="Next" className="w-8 fit-contain"/>
+                  <img src={slbtn} alt="Next" className="w-15 fit-contain"/>
                 </motion.button>
               </div>
             </div>
