@@ -58,19 +58,19 @@ const TelegramStickers = () => {
       />
 
       <div
-        className="absolute lg:left-1/50 -left-1/15  md:top-1/10 top-1/4 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-270"
+        className="absolute xl:left-1/50 -left-1/15  md:top-1/10 top-1/4 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-270"
         style={{backgroundImage: `url(${pattern1})`}}
       />
       <div
-        className="absolute lg:right-1/50 -right-1/15 md:top-1/10 top-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-90"
+        className="absolute xl:right-1/50 -right-1/15 md:top-1/10 top-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-90"
         style={{backgroundImage: `url(${pattern2})`}}
       />
       <div
-        className="absolute lg:left-1/50 -left-1/15  md:bottom-1/10 bottom-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-360"
+        className="absolute xl:left-1/50 -left-1/15  md:bottom-1/10 bottom-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-360"
         style={{backgroundImage: `url(${pattern4})`}}
       />
       <div
-        className="absolute lg:right-1/50 -right-1/15  md:bottom-1/10 bottom-1/3 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-180"
+        className="absolute xl:right-1/50 -right-1/15  md:bottom-1/10 bottom-1/3 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-180"
         style={{backgroundImage: `url(${pattern3})`}}
 
       />
@@ -78,7 +78,7 @@ const TelegramStickers = () => {
       <div className="container mx-auto px-4 pt-16 relative">
         <div className="text-center mb-12 mt-15 lg:mt-30">
           <motion.h1
-            className="text-[48px] xl:text-[100px] font-bold text-black mb-8"
+            className="text-[45px] md:text-[50px] xl:text-[70px] font-bold text-black mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -90,18 +90,18 @@ const TelegramStickers = () => {
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
-            className="inline-block bg-[#FF69B4] text-white px-5 lg:px-10 py-1.5 font-bold text-[48px] xl:text-[100px] rounded-[16px] lg:rounded-[30px] shadow-2xl border-[10px] border-white"
+            className="inline-block bg-[#FF69B4] text-white px-5 lg:px-10 py-1.5 font-bold text-[48px] lg:text-[60px] xl:text-[70px] 2xl:text-[80px] rounded-[16px] lg:rounded-[30px] shadow-2xl border-[10px] border-white"
           >
             СКАЧАТЬ
           </motion.a>
         </div>
 
-        <div className="flex justify-around items-center flex-wrap gap-4 sm:-mt-30 mb-55 ">
+        <div className="flex justify-around items-center flex-wrap gap-4 sm:-mt-30 mb-20 md:mb-55 ">
           <motion.div
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className="w-[210px] xl:w-[434px]"
+            className="w-[210px] lg:w-[300px] xl:w-[350px] 2xl:w-[434px]"
           >
             <img src={sticker1} alt="Chester on donut sticker" className="w-full h-auto" />
           </motion.div>
@@ -110,7 +110,7 @@ const TelegramStickers = () => {
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className={`w-[210px] xl:w-[434px] ${isChange ? "" : "mt-30 lg:mt-50"}`}
+            className={`w-[210px] lg:w-[300px] xl:w-[350px] 2xl:w-[434px] ${isChange ? "" : "mt-30 lg:mt-50"}`}
           >
             <img src={sticker2} alt="Dancing Chester sticker" className="w-full h-auto" />
           </motion.div>
@@ -119,7 +119,7 @@ const TelegramStickers = () => {
             variants={stickerVariants}
             initial="initial"
             animate="animate"
-            className="w-[210px] xl:w-[434px]"
+            className="w-[210px] lg:w-[300px] xl:w-[350px] 2xl:w-[434px]"
           >
             <img src={sticker3} alt="Chester with heart box sticker" className="w-full h-auto transform rotate-12" />
           </motion.div>

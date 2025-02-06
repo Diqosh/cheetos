@@ -74,7 +74,8 @@ const AnimatedWord = ({word, index, inView}: { word: string; index: number; inVi
   );
 };
 
-export const ValentineQuiz: React.FC<{ answers: Answer[],   refAfterClickResult: React.RefObject<HTMLDivElement>;
+export const ValentineQuiz: React.FC<{
+  answers: Answer[], refAfterClickResult: React.RefObject<HTMLDivElement>;
 }> = ({answers, refAfterClickResult}) => {
 
   const normalizedAnswers: [string, number][] = Object.keys(results).map((key) => [
@@ -219,7 +220,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[],   refAfterClickResult:
                     <img
                       src={currentResult.image}
                       alt=""
-                      className={`absolute left-1/2 -translate-x-1/2 ${isMobile ? "top-10" : "top-15" } w-[126px] md:w-[201px] z-50`}
+                      className={`absolute left-1/2 -translate-x-1/2 ${isMobile ? "top-10" : "top-15"} ${currentResult.title === "Сам себе Валентин!" ? "md:w-[221px]" : "md:w-[201px]"} w-[126px] md:w-[201px] z-50`}
                     />
                   </motion.div>
 

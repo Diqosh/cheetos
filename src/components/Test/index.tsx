@@ -58,7 +58,7 @@ export const questions: Question[] = [
   {
     id: 4,
     text: "КАКАЯ ИДЕАЛЬНАЯ ДЛЯ </br> ТЕБЯ ВАЛЕНТИНКА?",
-    textFull: "КАКАЯ ИДЕАЛЬНАЯ ДЛЯ ТЕБЯ ВАЛЕНТИНКА?",
+    textFull: "КАКАЯ ИДЕАЛЬНАЯ ДЛЯ  ТЕБЯ ВАЛЕНТИНКА?",
     options: [
       {id: 'A', text: "Классическая открытка с признанием в любви"},
       {id: 'B', text: "Мем или шуточное послание для поднятия настроения"},
@@ -69,7 +69,7 @@ export const questions: Question[] = [
   {
     id: 5,
     text: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ </br> ЛИ  ТЫ В ЛЮБВИ СВОЕМУ </br> ПАРТНЕРУ КОГДА-НИБУДЬ?",
-    textFull: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ ЛИ ТЫ В ЛЮБВИ СВОЕМУ ПАРТНЕРУ КОГДА-НИБУДЬ?",
+    textFull: "ПРИЗНАВАЛСЯ/ПРИЗНАВАЛАСЬ ЛИ  ТЫ В ЛЮБВИ </br>СВОЕМУ  ПАРТНЕРУ КОГДА-НИБУДЬ?",
     options: [
       {id: 'A', text: "Конечно! И не один раз"},
       {id: 'B', text: "Если я испытываю чувства, то мне несложно признаться"},
@@ -109,6 +109,8 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
   };
 
   const isHideHands = useMediaQuery({maxWidth: 807});
+  const isTextSmall = useMediaQuery({maxWidth: 1200});
+
   const [selectedOption, setSelectedOption] = useState<Answer | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -214,11 +216,11 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                   <img
                     src={left_heart}
                     alt="Left heart"
-                    className="absolute w-34 min-w-34 object-contain -bottom-9 -left-29"
+                    className="absolute w-42 min-w-42 object-contain -bottom-9 -left-29"
                   />
                   <h2
-                    className="text-2xl md:text-4xl font-bold text-black bg-white py-2 px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center"
-                    dangerouslySetInnerHTML={{__html: isHideHands ? questions[currentQuestion].text : questions[currentQuestion].textFull}}
+                    className={`text-2xl md:text-3xl font-bold text-black bg-white  ${isHideHands ? "py-2": "py-6"} px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center`}
+                    dangerouslySetInnerHTML={{__html: isTextSmall ? questions[currentQuestion].text : questions[currentQuestion].textFull}}
                   />
                   <img
                     src={right}
@@ -228,7 +230,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                   <img
                     src={right_heart}
                     alt="Right heart"
-                    className="absolute w-29 min-w-29 object-contain -bottom-9 -right-24"
+                    className="absolute w-38 min-w-38 object-contain -bottom-9 -right-24"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -270,13 +272,8 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                     x: 0,
                     opacity: 1,
                     transition: {
-                      delay: index * 0.1
+                      delay: 0.5,
                     }
-                  }}
-                  exit={{
-                    x: index % 2 === 0 ? -100 : 100,
-                    opacity: 0,
-                    transition: {duration: 0.2}
                   }}
                   whileHover={{scale: 1.02}}
                   onClick={() => setSelectedOption(option.id)}
