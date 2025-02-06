@@ -267,7 +267,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
               {questions[currentQuestion].options.map((option, index) => (
                 <motion.button
                   key={option.id}
-                  initial={{x: index % 2 === 0 ? -100 : 100, opacity: 0}}
+                  initial={{x: index % 2 === 0 ? -1000 : 1000}}
                   animate={{
                     x: 0,
                     opacity: 1,
