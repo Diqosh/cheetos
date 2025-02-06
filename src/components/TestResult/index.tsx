@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {motion, useInView} from 'framer-motion';
 import left from './assets/left.png';
 import right from './assets/right.png';
@@ -11,10 +11,13 @@ import phylosophy from './assets/phylosophy.png';
 import val from './assets/Valentine.png';
 
 import slbtn from './assets/sliderButton.png';
+import slbtnLeft from './assets/sliderButtonLeft.png';
+
 
 import {Answer} from "@/components/Test/models/types.ts";
 import {useMediaQuery} from "react-responsive";
 import {ResultsSection} from "@/components/TestResult/animation/result.tsx";
+import exportAsImage from "@/components/TestResult/download";
 
 const results: Record<string, { title: string; description: string, image: string }> = {
   A: {
@@ -85,6 +88,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
 
 
   const componentRef = useRef(null);
+
   const inView = useInView(componentRef, {once: true, amount: 0.3});
   const isMobile = useMediaQuery({maxWidth: 768});
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -106,6 +110,24 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
     setSlideDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
+
+  const handleDownload = useCallback(async () => {
+    if (!componentRef.current) return;
+
+    try {
+      await exportAsImage(
+        componentRef.current,
+        'valentine-quiz-result.png',
+        {
+          quality: 1.0,
+          scale: 2,
+          backgroundColor: '#ffffff' // Optional: ensure white background
+        }
+      );
+    } catch (error) {
+      console.error('Failed to download image:', error);
+    }
+  }, []);
 
   const currentResult = results[sortedArray[currentSlide][0]];
   return (
@@ -147,7 +169,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   className="hidden md:block  hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-[70px] fit-contain rotate-180"/>
+                  <img src={slbtnLeft} alt="Previous" className="w-[70px] fit-contain "/>
                 </motion.button>
 
                 <div className="max-w-md relative mt-10">
@@ -216,6 +238,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.7}}
                   className="absolute left-1/2 -translate-x-1 bottom-[30px] w-[100px] hidden md:block z-21 hover:scale-105 transition-transform"
+                  onClick={handleDownload}
                 >
                   <img src={download} alt="Download" className="fit-contain"/>
                 </motion.button>
@@ -227,16 +250,17 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   initial={{opacity: 0}}
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.5}}
-                  className="my-auto rotate-180 hover:scale-110 transition-transform"
+                  className="my-auto hover:scale-110 transition-transform"
                   onClick={prevSlide}
                 >
-                  <img src={slbtn} alt="Previous" className="w-15 fit-contain"/>
+                  <img src={slbtnLeft} alt="Previous" className="w-15 fit-contain"/>
                 </motion.button>
                 <motion.button
                   initial={{opacity: 0}}
                   animate={inView ? {opacity: 1} : {opacity: 0}}
                   transition={{delay: 2.7}}
                   className="w-[100px] block hover:scale-105 transition-transform"
+                  onClick={handleDownload}
                 >
                   <img src={download} alt="Download" className="fit-contain"/>
                 </motion.button>
