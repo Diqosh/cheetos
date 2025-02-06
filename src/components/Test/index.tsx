@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
 import left from './assets/left.png';
 import right from './assets/right.png';
@@ -7,6 +7,11 @@ import right_heart from './assets/right_heart.png';
 import {useMediaQuery} from "react-responsive";
 import {Answer, Question} from "@/components/Test/models/types.ts";
 import bg from "./assets/bg.png";
+import bgMin from "./assets/bg-min.png";
+import pattern1 from "@/components/StickerPack/assets/patter1.png";
+import pattern2 from "@/components/StickerPack/assets/pattern2.png";
+import pattern4 from "@/components/StickerPack/assets/pattern4.png";
+import pattern3 from "@/components/StickerPack/assets/pattern3.png";
 
 
 type Props = {
@@ -74,6 +79,17 @@ export const questions: Question[] = [
 
 
 export const Test = ({answers, setAnswers}: Props) => {
+  const changeBg = useMediaQuery({maxWidth: 800});
+  const [imgSrc, setImgSrc] = useState(bg);
+
+  useEffect(() => {
+    if (changeBg) {
+      setImgSrc(bgMin);
+    } else {
+      setImgSrc(bg);
+    }
+  }, [changeBg]);
+
   const handleClick = () => {
     window.scrollTo({
       top: window.scrollY + window.innerHeight - 100,
@@ -107,37 +123,65 @@ export const Test = ({answers, setAnswers}: Props) => {
     }
   };
 
-  // Animation variants for the options
-  const optionVariants = {
-    hidden: {
-      scale: 0,
-      opacity: 0
-    },
-    visible: (index: number) => ({
-      scale: 1,
-      opacity: 1,
-      transition: {
-        delay: index * 0.15,
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }),
-    exit: {
-      scale: 0,
-      opacity: 0,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
+  // // Animation variants for the options
+  // const optionVariants = {
+  //   hidden: {
+  //     scale: 0,
+  //     opacity: 0
+  //   },
+  //   visible: (index: number) => ({
+  //     scale: 1,
+  //     opacity: 1,
+  //     transition: {
+  //       delay: index * 0.15,
+  //       duration: 0.3,
+  //       ease: "easeOut"
+  //     }
+  //   }),
+  //   exit: {
+  //     scale: 0,
+  //     opacity: 0,
+  //     transition: {
+  //       duration: 0.2
+  //     }
+  //   }
+  // };
 
   return (
     <div className="w-full relative p-4 py-30 z-2">
       <img
-        src={bg}
+        src={imgSrc}
         alt="bg"
         className="absolute inset-0 bg-cover h-full w-full bg-no-repeat"
       />
+      {changeBg ? <>
+        <div
+          className="absolute left-1/2 -translate-x-1/2 top-[10px] w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-[50deg]"
+          style={{backgroundImage: `url(${pattern2})`}}
+        />
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-90"
+          style={{backgroundImage: `url(${pattern2})`}}
+        />
+      </> : <>
+        <div
+        className="absolute lg:left-1/50 -left-1/15  md:top-1/10 top-1/4 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-270"
+        style={{backgroundImage: `url(${pattern1})`}}
+      />
+        <div
+          className="absolute lg:right-1/50 -right-1/15 md:top-1/10 top-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-90"
+          style={{backgroundImage: `url(${pattern2})`}}
+        />
+        <div
+          className="absolute lg:left-1/50 -left-1/15  md:bottom-1/10 bottom-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-360"
+          style={{backgroundImage: `url(${pattern4})`}}
+        />
+        <div
+          className="absolute lg:right-1/50 -right-1/15  md:bottom-1/10 bottom-1/3 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-180"
+          style={{backgroundImage: `url(${pattern3})`}}
+
+        />
+      </>}
       <div className="container max-w-[1680px] mx-auto pt-16 relative">
         <div>
           <div className="text-center mb-8">
@@ -210,14 +254,23 @@ export const Test = ({answers, setAnswers}: Props) => {
               {questions[currentQuestion].options.map((option, index) => (
                 <motion.button
                   key={option.id}
-                  variants={optionVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  custom={index}
+                  initial={{x: index % 2 === 0 ? -100 : 100, opacity: 0}}
+                  animate={{
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: index * 0.1
+                    }
+                  }}
+                  exit={{
+                    x: index % 2 === 0 ? -100 : 100,
+                    opacity: 0,
+                    transition: {duration: 0.2}
+                  }}
+                  whileHover={{scale: 1.02}}
                   onClick={() => setSelectedOption(option.id)}
                   className={`w-full p-4 bg-white rounded-xl text-left shadow-lg transition-all text-[20px] lg:text-[28px] md:min-h-[116px]
-                    ${selectedOption === option.id ? 'border-4 border-black-500' : 'border-4 border-transparent'}`}
+      ${selectedOption === option.id ? 'border-4 border-black-500' : 'border-4 border-transparent'}`}
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-5xl font-bold text-black">{option.id}</span>

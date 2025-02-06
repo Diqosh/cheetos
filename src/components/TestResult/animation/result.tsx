@@ -82,10 +82,10 @@ export const ResultsSection: React.FC<{
               prevSlide();
             }
           }}
-          className="absolute inset-0 flex flex-col lg:flex-row gap-10 items-center lg:items-start justify-center w-full mx-auto px-4 mb-20"
+          className="absolute inset-0 flex flex-col lg:flex-row gap-10 items-center lg:items-start justify-center w-full mx-auto px-12 mb-20"
         >
           <motion.div
-            className="text-3xl md:text-6xl uppercase font-bold text-center text-orange-500"
+            className="text-3xl md:text-6xl uppercase font-bold text-center lg:text-left  text-orange-500 min-w-[450px]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}

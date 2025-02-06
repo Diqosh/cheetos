@@ -58,20 +58,21 @@ const TelegramStickers = () => {
       />
 
       <div
-        className="absolute left-0 top-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        className="absolute lg:left-1/50 -left-1/15  md:top-1/10 top-1/4 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-270"
         style={{backgroundImage: `url(${pattern1})`}}
       />
       <div
-        className="absolute right-0-0 top-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        className="absolute lg:right-1/50 -right-1/15 md:top-1/10 top-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-90"
         style={{backgroundImage: `url(${pattern2})`}}
       />
       <div
-        className="absolute left-0 bottom-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
-        style={{backgroundImage: `url(${pattern3})`}}
+        className="absolute lg:left-1/50 -left-1/15  md:bottom-1/10 bottom-1/5 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-360"
+        style={{backgroundImage: `url(${pattern4})`}}
       />
       <div
-        className="absolute right-0 bottom-20 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
-        style={{backgroundImage: `url(${pattern4})`}}
+        className="absolute lg:right-1/50 -right-1/15  md:bottom-1/10 bottom-1/3 w-50 h-50 md:w-40 lg:w-55 lg:h-55 bg-contain bg-no-repeat rotate-180"
+        style={{backgroundImage: `url(${pattern3})`}}
+
       />
 
       <div className="container mx-auto px-4 pt-16 relative">

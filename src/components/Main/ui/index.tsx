@@ -46,11 +46,11 @@ export const Main = () => {
         <img className="w-full object-contain" src={tiger} alt="Majestic tiger" />
         <CheetosBag
           image={cheetosBlack}
-          className="right-0 translate-x-[30%] md:translate-x-[40%] -translate-y-[20%] md:-translate-y-[25%] rotate-[20deg]"
+          className="right-0 translate-x-[30%] md:translate-x-[20%] -translate-y-[50%] md:-translate-y-[55%] rotate-[20deg]"
         />
         <CheetosBag
           image={cheetosPink}
-          className="left-0 -translate-x-[30%] md:-translate-x-[40%] -translate-y-[20%] md:-translate-y-[25%] -rotate-[29deg]"
+          className="left-0 -translate-x-[30%] md:-translate-x-[30%] -translate-y-[30%] md:-translate-y-[40%] -rotate-[29deg]"
         />
       </motion.div>
     </div>

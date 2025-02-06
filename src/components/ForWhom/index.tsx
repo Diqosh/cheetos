@@ -1,9 +1,23 @@
 import {motion} from 'framer-motion';
 import bg from "./assets/background.png";
+import bgMin from "./assets/bg-min.png";
 import pattern1 from "./assets/1.png";
 import pattern2 from "./assets/2.png";
+import {useMediaQuery} from "react-responsive";
+import {useEffect, useState} from "react";
 
 export const ForWhom = () => {
+  const changeBg = useMediaQuery({maxWidth: 800});
+  const [imgSrc, setImgSrc] = useState(bg);
+
+  useEffect(() => {
+    if (changeBg) {
+      setImgSrc(bgMin);
+    } else {
+      setImgSrc(bg);
+    }
+  }, [changeBg]);
+
 
   const rotateAnimation = {
     left: {
@@ -31,9 +45,10 @@ export const ForWhom = () => {
   return (
     <section className="relative w-full min-h-[700px] sm:min-h-[720px] md:min-h-[700px] lg:min-h-[800px] -mt-20 z-10">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-no-repeat"
-        style={{backgroundImage: `url(${bg})`}}
+      <img
+        src={imgSrc}
+        alt="bg"
+        className="absolute inset-0 bg-cover h-full w-full bg-no-repeat"
       />
 
       <div

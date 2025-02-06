@@ -5,24 +5,30 @@ import heart from "@/components/Main/assets/heart.png";
 const baseHeartConfig = [
   // Top left small heart
   {
-    x: -180,
+    x: -320,
     y: -150,
+    xMobile: 250,
+    yMobile: -400,
     rotate: 45,
     size: 'w-8 sm:w-10 md:w-12 lg:w-16 xl:w-20',
     delay: 2.2
   },
   // Top right medium heart
   {
-    x: 220,
+    x: 120,
     y: -180,
+    xMobile: 250,
+    yMobile: -200,
     rotate: -30,
     size: 'w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24',
     delay: 2.4
   },
   // Bottom left medium heart
   {
-    x: -250,
-    y: 160,
+    x: -240,
+    y: 60,
+    xMobile: 220,
+    yMobile: -140,
     rotate: 60,
     size: 'w-10 sm:w-12 md:w-16 lg:w-20 xl:w-24',
     delay: 2.6
@@ -30,23 +36,29 @@ const baseHeartConfig = [
   // Center right large heart
   {
     x: 160,
-    y: -40,
+    y: -140,
+    xMobile: -200,
+    yMobile: -180,
     rotate: 45,
     size: 'w-16 sm:w-20 md:w-24 lg:w-32 xl:w-40',
     delay: 2.3
   },
   // Top left medium blurred heart
   {
-    x: -140,
-    y: -80,
+    x: 220,
+    y: -180,
+    xMobile: -200,
+    yMobile: -180,
     rotate: 30,
-    size: 'w-12 sm:w-14 md:w-18 lg:w-24 xl:w-28',
+    size: 'w-8 sm:w-10 md:w-14 lg:w-16 xl:w-14',
     delay: 2.5
   },
   // Bottom right medium heart
   {
-    x: 190,
-    y: 120,
+    x: 215,
+    y: 40,
+    xMobile: -300,
+    yMobile: -130,
     rotate: -25,
     size: 'w-10 sm:w-12 md:w-16 lg:w-20 xl:w-24',
     delay: 2.7
@@ -56,6 +68,7 @@ const baseHeartConfig = [
 export const HeartAnimation = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  console.log(isMobile)
 
   const getScaleFactor = () => {
     if (isMobile) return 1.8;
@@ -69,8 +82,10 @@ export const HeartAnimation = () => {
   return (
     <div className="absolute inset-0 overflow-hidden">
       {baseHeartConfig.map((config, index) => {
-        const scaledX = config.x * scaleFactor;
-        const scaledY = config.y * scaleFactor;
+        const x = isMobile ? config.xMobile : config.x;
+        const y = isMobile ? config.yMobile : config.y;
+        const scaledX = x * scaleFactor;
+        const scaledY = y * scaleFactor;
 
         return (
           <motion.div

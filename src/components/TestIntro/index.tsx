@@ -63,9 +63,9 @@ export const TestInto = () => {
           transition={{duration: 1}}
         >
           {tigerChange ? (
-            <span dangerouslySetInnerHTML={{__html: "КТО ТЫ <br />НА 14 <br /> ФЕВРАЛЯ?"}}/>
+            <div dangerouslySetInnerHTML={{__html: "КТО ТЫ <br />НА 14 <br /> ФЕВРАЛЯ?"}}/>
           ) : (
-            <span dangerouslySetInnerHTML={{__html: "КТО ТЫ НА<br />14 ФЕВРАЛЯ?"}}/>
+            <div dangerouslySetInnerHTML={{__html: "КТО ТЫ НА<br />14 ФЕВРАЛЯ?"}}/>
           )}
           <div
             className={`absolute ${tigerChange ? "left-1/2 top-[26px]" : "left-[270px] sm:left-[310px] md:left-[370px] lg:left-[650px] -top-[60px]"} ${tigerChange ? "" : "rotate-45"}`}>

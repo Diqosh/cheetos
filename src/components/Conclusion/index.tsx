@@ -38,7 +38,7 @@ export const Credits = () => {
   return (
     <div className="min-h-2/3 w-full max-w-[1680px] mx-auto">
       <div className="container mx-auto py-8 md:py-12 lg:py-16">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 md:gap-8 lg:gap-16 xl:gap-20">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 md:gap-8 lg:gap-16 xl:gap-20 px-10">
           {/* Left Section */}
           <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
             {/* Mobile Logo */}
@@ -61,7 +61,7 @@ export const Credits = () => {
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 lg:mb-8 text-black text-center lg:text-right"
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 lg:mb-8 text-black text-center lg:text-right"
             >
               НАД ПРОЕКТОМ <br/>РАБОТАЛИ:
             </motion.h2>
@@ -109,10 +109,10 @@ export const Credits = () => {
                 variants={itemVariants}
                 className="mb-3 sm:mb-4 md:mb-5 flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 md:gap-4 text-center sm:text-left"
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium">
+                <span className="text-lg lg:text-xl xl:text-2xl font-medium whitespace-nowrap">
                   {credit.role}
                 </span>
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold">
+                <span className="text-lg lg:text-xl xl:text-2xl font-semibold whitespace-nowrap">
                   {credit.name}
                 </span>
               </motion.div>
