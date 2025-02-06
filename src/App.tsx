@@ -1,4 +1,4 @@
-import {useEffect, useLayoutEffect, useState} from 'react';
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import bg from "@/assets/images/background.jpg";
 import "@/assets/css/style.css";
 import { Main } from "@/components/Main/ui";
@@ -28,6 +28,10 @@ if ('scrollRestoration' in window.history) {
 }
 
 function App() {
+
+  const refAfterClickStart = useRef(null);
+  const refAfterClickResult = useRef(null);
+
 
   // Use useLayoutEffect to handle scroll before paint
   useLayoutEffect(() => {
@@ -78,9 +82,9 @@ function App() {
         <div className="relative w-full">
           <Main />
           <ForWhom />
-          <TestInto />
-          <Test answers={answers} setAnswers={setAnswers}/>
-          <ValentineQuiz answers={answers}/>
+          <TestInto refAfterClickStart={refAfterClickStart}/>
+          <Test answers={answers} setAnswers={setAnswers} refAfterClickStart={refAfterClickStart} refAfterClickResult={refAfterClickResult}/>
+          <ValentineQuiz answers={answers} refAfterClickResult={refAfterClickResult}/>
           <TelegramStickers/>
           <Credits/>
         </div>

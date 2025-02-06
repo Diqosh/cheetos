@@ -17,6 +17,8 @@ import pattern3 from "@/components/StickerPack/assets/pattern3.png";
 type Props = {
   answers: Answer[];
   setAnswers: (answers: Answer[]) => void;
+  refAfterClickStart: React.RefObject<HTMLDivElement>;
+  refAfterClickResult: React.RefObject<HTMLDivElement>;
 }
 
 export const questions: Question[] = [
@@ -78,7 +80,7 @@ export const questions: Question[] = [
 ];
 
 
-export const Test = ({answers, setAnswers}: Props) => {
+export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResult}: Props) => {
   const changeBg = useMediaQuery({maxWidth: 800});
   const [imgSrc, setImgSrc] = useState(bg);
 
@@ -91,10 +93,19 @@ export const Test = ({answers, setAnswers}: Props) => {
   }, [changeBg]);
 
   const handleClick = () => {
-    window.scrollTo({
-      top: window.scrollY + window.innerHeight - 100,
-      behavior: 'smooth'
-    });
+    if (refAfterClickStart.current) {
+      const elementRect = refAfterClickResult?.current?.getBoundingClientRect();
+      if (elementRect){
+        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+        window.scrollTo({
+          top: middle,
+          behavior: 'smooth'
+        });
+      }
+
+    }
   };
 
   const isHideHands = useMediaQuery({maxWidth: 807});
@@ -148,7 +159,7 @@ export const Test = ({answers, setAnswers}: Props) => {
   // };
 
   return (
-    <div className="w-full relative p-4 py-30 z-2">
+    <div className="w-full relative p-4 py-30 z-2" ref={refAfterClickStart}>
       <img
         src={imgSrc}
         alt="bg"

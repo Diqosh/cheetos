@@ -6,7 +6,11 @@ import startHovered from './assets/start_hovered.png';
 import {useMediaQuery} from "react-responsive";
 import {useEffect, useRef, useState} from "react";
 
-export const TestInto = () => {
+type Props = {
+  refAfterClickStart: React.RefObject<HTMLDivElement>;
+}
+
+export const TestInto = ({refAfterClickStart}: Props) => {
   const [imgSrc, setImgSrc] = useState(start);
   const tigerChange = useMediaQuery({maxWidth: 633});
   const [isHovered, setIsHovered] = useState(false);
@@ -23,10 +27,16 @@ export const TestInto = () => {
   }, [isInView]);
 
   const handleClick = () => {
-    window.scrollTo({
-      top: window.scrollY + window.innerHeight - 100,
-      behavior: 'smooth'
-    });
+    if (refAfterClickStart.current) {
+      const elementRect = refAfterClickStart.current.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+      window.scrollTo({
+        top: middle,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const animationProps = tigerChange
@@ -77,7 +87,7 @@ export const TestInto = () => {
             <motion.img
               src={chesterImage}
               alt="start"
-              className={`h-auto fit-contain absolute ${tigerChange ? "w-10 -right-[20px] -top-[10px]" : "w-20 right-[70px] -top-[30px]"}`}
+              className={`h-auto fit-contain absolute ${tigerChange ? "w-10 right-[40px] -top-[10px]" : "w-20 right-[70px] -top-[30px]"}`}
               {...animationProps}
               transition={{
                 x: {

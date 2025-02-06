@@ -74,7 +74,8 @@ const AnimatedWord = ({word, index, inView}: { word: string; index: number; inVi
   );
 };
 
-export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
+export const ValentineQuiz: React.FC<{ answers: Answer[],   refAfterClickResult: React.RefObject<HTMLDivElement>;
+}> = ({answers, refAfterClickResult}) => {
 
   const normalizedAnswers: [string, number][] = Object.keys(results).map((key) => [
     key,
@@ -132,7 +133,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
   const currentResult = results[sortedArray[currentSlide][0]];
   return (
     <div className="w-full h-full flex flex-col overflow-hidden z-1" ref={componentRef}>
-      <div className="relative flex-1">
+      <div className="relative flex-1" ref={refAfterClickResult}>
         {/* Background Text */}
         <div className="absolute inset-0 text-[#FF4500] font-bold flex items-start justify-center pointer-events-none">
           <div className={`
