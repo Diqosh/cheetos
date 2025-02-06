@@ -96,7 +96,7 @@ export const ForWhom = () => {
         {/* Description */
         }
         <p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-black leading-relaxed max-w-5xl mx-auto text-center mb-15 uppercase">
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-black leading-relaxed max-w-5xl mx-auto text-center mb-15 uppercase bryndan-text">
           Ко Дню всех влюбленных Честер подготовил две упаковки Cheetos — для нее и для него, в розовом и черном цветах.
           А еще в форме сердечек и с любимым сырным вкусом! Теперь признаваться в чувствах можно даже через снеки!
           Выбирай в магазинах своего города Cheetos. Пробуй, влюбляйся, вдохновляйся! </p>

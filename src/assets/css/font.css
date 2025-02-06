@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Bryndan';
+  src: url('../font/Bryndan_Write_Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BlobSpongy';
+  src: url('../font/BlobSpongeyLowercase.ttf') format('truetype'),
+  url('../font/BlobSpongeyLowercase.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

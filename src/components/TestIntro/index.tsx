@@ -5,6 +5,7 @@ import start from './assets/start.png';
 import startHovered from './assets/start_hovered.png';
 import {useMediaQuery} from "react-responsive";
 import {useEffect, useRef, useState} from "react";
+import "@/assets/css/style.css";
 
 type Props = {
   refAfterClickStart: React.RefObject<HTMLDivElement>;
@@ -67,8 +68,7 @@ export const TestInto = ({refAfterClickStart}: Props) => {
         </motion.span>
 
         <motion.h1
-          className={`${tigerChange ? 'text-6xl flex justify-center' : 'text-5xl'} sm:text-6xl md:text-7xl lg:text-9xl font-bold mb-8 text-orange-500 tracking-wider relative`}
-          initial={{opacity: 0, y: -50}}
+          className={`${tigerChange ? 'text-6xl flex justify-center' : 'text-5xl text-left'} sm:text-6xl md:text-[6rem] lg:text-[8rem] xl:text-[10rem] 2xl:text-[12rem] font-bold mb-8 text-orange-500 tracking-wider relative w-full`}          initial={{opacity: 0, y: -50}}
           animate={isVisible ? {opacity: 1, y: 0} : {opacity: 0, y: -50}}
           transition={{duration: 1}}
         >
@@ -78,7 +78,7 @@ export const TestInto = ({refAfterClickStart}: Props) => {
             <div dangerouslySetInnerHTML={{__html: "КТО ТЫ НА<br />14 ФЕВРАЛЯ?"}}/>
           )}
           <div
-            className={`absolute ${tigerChange ? "left-1/2 top-[26px]" : "left-[270px] sm:left-[310px] md:left-[370px] lg:left-[650px] -top-[60px]"} ${tigerChange ? "" : "rotate-45"}`}>
+            className={`absolute ${tigerChange ? "left-1/2 top-[26px]" : "left-[270px] sm:left-[310px] md:left-[470px] lg:left-[650px] xl:left-[850px] 2xl:left-[1000px] -top-[60px]"} ${tigerChange ? "" : "rotate-45"}`}>
             <img
               src={tiger}
               alt="Chester with heart"
@@ -117,7 +117,7 @@ export const TestInto = ({refAfterClickStart}: Props) => {
           transition={{duration: 0.6, delay: 0.3}}
         >
           <motion.p
-            className={`py-auto lg:text-2xl lg:text-3xl w-full uppercase ${tigerChange ? "mx-auto w-[331px]" : ""}`}
+            className={`py-auto lg:text-3xl w-full uppercase bryndan-text ${tigerChange ? "mx-auto w-[331px]" : ""}`}
             initial={{opacity: 0, y: 50}}
             animate={isVisible ? {opacity: 1, y: 0} : {opacity: 0, y: 50}}
             transition={{duration: 0.6, delay: 0.4}}

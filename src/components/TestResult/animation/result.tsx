@@ -93,7 +93,7 @@ export const ResultsSection: React.FC<{
             {currentResult.title}
           </motion.div>
           <motion.div
-            className="text-lg md:text-2xl font-light text-center lg:text-left"
+            className="text-lg md:text-2xl font-light text-center lg:text-left bryndan-text"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}

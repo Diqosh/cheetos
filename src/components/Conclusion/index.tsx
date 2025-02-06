@@ -107,7 +107,7 @@ export const Credits = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="mb-3 sm:mb-4 md:mb-5 flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 md:gap-4 text-center sm:text-left"
+                className="mb-3 sm:mb-4 md:mb-5 flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 md:gap-4 text-center sm:text-left bryndan-text"
               >
                 <span className="text-lg lg:text-xl xl:text-2xl font-medium whitespace-nowrap">
                   {credit.role}

@@ -159,7 +159,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
   // };
 
   return (
-    <div className="w-full relative p-4 py-30 z-2" ref={refAfterClickStart}>
+    <div className="w-full relative p-4 py-30 z-2 bryndan-text" ref={refAfterClickStart}>
       <img
         src={imgSrc}
         alt="bg"
@@ -217,7 +217,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                     className="absolute w-34 min-w-34 object-contain -bottom-9 -left-29"
                   />
                   <h2
-                    className="text-2xl font-bold text-black bg-white py-2 px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center"
+                    className="text-2xl md:text-4xl font-bold text-black bg-white py-2 px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center"
                     dangerouslySetInnerHTML={{__html: isHideHands ? questions[currentQuestion].text : questions[currentQuestion].textFull}}
                   />
                   <img
@@ -239,7 +239,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                 <button
                   onClick={handlePrevious}
                   disabled={currentQuestion === 0}
-                  className="bg-gray-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer"
+                  className="bg-gray-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer blob-text"
                 >
                   НАЗАД
                 </button>
@@ -249,7 +249,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                 <button
                   onClick={handleNext}
                   disabled={!selectedOption}
-                  className="bg-orange-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer"
+                  className="bg-orange-500 text-white text-xl md:text-[36px] px-6 py-2 rounded-[20px] disabled:opacity-50 border-4 border-white cursor-pointer blob-text"
                 >
                   {currentQuestion === questions.length - 1 ? 'РЕЗУЛЬТАТ' : 'ДАЛЕЕ'}
                 </button>
@@ -285,7 +285,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-5xl font-bold text-black">{option.id}</span>
-                    <span className="text-gray-800">{option.text}</span>
+                    <span className="text-gray-800 uppercase">{option.text}</span>
                   </div>
                 </motion.button>
               ))}

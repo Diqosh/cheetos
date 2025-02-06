@@ -77,7 +77,7 @@ function App() {
           left: 0
           // maxWidth: "1680px"
         }}
-        className="overflow-x-hidden w-full"
+        className="overflow-x-hidden w-full blob-text"
       >
         <div className="relative w-full">
           <Main />
