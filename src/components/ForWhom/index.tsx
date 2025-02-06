@@ -52,11 +52,11 @@ export const ForWhom = () => {
       />
 
       <div
-        className="absolute -left-5 md:-left-0 top-25 w-30 h-30 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat "
+        className="absolute -left-5 md:-left-0 top-25 w-30 h-30 sm:w-32 sm:h-32 md:w-40 md:h-40 xl:w-[242px] xl:h-[290px] bg-contain bg-no-repeat "
         style={{backgroundImage: `url(${pattern1})`}}
       />
       <div
-        className="absolute -right-7 rotate-180 md:rotate-0 top-25 md: w-30 h-30 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-contain bg-no-repeat"
+        className="absolute -right-7 rotate-180 md:rotate-0 top-25 md: w-30 h-30 sm:w-32 sm:h-32 md:w-40 md:h-40 xl:w-[262px] xl:h-[380px] bg-contain bg-no-repeat"
         style={{backgroundImage: `url(${pattern2})`}}
       />
 

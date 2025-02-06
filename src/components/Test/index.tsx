@@ -249,7 +249,7 @@ export const Test = ({answers, setAnswers}: Props) => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQuestion}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-30"
             >
               {questions[currentQuestion].options.map((option, index) => (
                 <motion.button
