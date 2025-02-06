@@ -183,6 +183,22 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                   >
                     {/* Heart Image (moved to be first in DOM) */}
                     <motion.img
+                      initial={{y: -100, opacity: 0}}
+                      animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
+                      transition={{delay: 2, duration: 0.8, type: "spring"}}
+                      src={left}
+                      alt="Left decoration"
+                      className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -left-15 md:-left-25 z-0"
+                    />
+                    <motion.img
+                      initial={{y: -100, opacity: 0}}
+                      animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
+                      transition={{delay: 2, duration: 0.8, type: "spring"}}
+                      src={right}
+                      alt="Right decoration"
+                      className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -right-15 md:-right-25 z-0"
+                    />
+                    <motion.img
                       src={heartIcon}
                       alt="Heart"
                       className="w-[250px] md:w-[380px] mb-10 relative z-0"
@@ -196,14 +212,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                         delay: 2.5
                       }}
                     />
-                    <motion.img
-                      initial={{y: -100, opacity: 0}}
-                      animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
-                      transition={{delay: 2, duration: 0.8, type: "spring"}}
-                      src={left}
-                      alt="Left decoration"
-                      className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -left-15 md:-left-25 z-0"
-                    />
+
 
                     {/* Top Result Image */}
                     <img
@@ -213,14 +222,7 @@ export const ValentineQuiz: React.FC<{ answers: Answer[] }> = ({answers}) => {
                     />
                   </motion.div>
 
-                  <motion.img
-                    initial={{y: -100, opacity: 0}}
-                    animate={inView ? {y: 0, opacity: 1} : {y: -100, opacity: 0}}
-                    transition={{delay: 2, duration: 0.8, type: "spring"}}
-                    src={right}
-                    alt="Right decoration"
-                    className="w-[120px] md:w-[180px] fit-contain absolute -top-30 -right-15 md:-right-25 z-0"
-                  />
+
                 </div>
 
                 <motion.button
