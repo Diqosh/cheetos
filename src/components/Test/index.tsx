@@ -216,10 +216,10 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                   <img
                     src={left_heart}
                     alt="Left heart"
-                    className="absolute w-42 min-w-42 object-contain -bottom-9 -left-29"
+                    className="absolute w-38 md:w-42 min-w-38 md:min-w-42 object-contain -bottom-9 -left-29"
                   />
                   <h2
-                    className={`text-2xl md:text-3xl font-bold text-black bg-white  ${isHideHands ? "py-2": "py-6"} px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center`}
+                    className={`text-lg md:text-3xl font-bold text-black bg-white ${isHideHands ? "py-2": "py-6"} px-4 rounded-lg overflow-hidden nowrap min-h-24 flex items-center justify-center text-center`}
                     dangerouslySetInnerHTML={{__html: isTextSmall ? questions[currentQuestion].text : questions[currentQuestion].textFull}}
                   />
                   <img
@@ -230,7 +230,7 @@ export const Test = ({answers, setAnswers, refAfterClickStart, refAfterClickResu
                   <img
                     src={right_heart}
                     alt="Right heart"
-                    className="absolute w-38 min-w-38 object-contain -bottom-9 -right-24"
+                    className="absolute w-34 md:w-38 min-w-34 md:min-w-38 object-contain -bottom-9 -right-24"
                   />
                 </motion.div>
               </AnimatePresence>
