@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {motion, useInView} from 'framer-motion';
 import left from './assets/left.png';
 import right from './assets/right.png';
@@ -13,32 +13,42 @@ import val from './assets/Valentine.png';
 import slbtn from './assets/sliderButton.png';
 import slbtnLeft from './assets/sliderButtonLeft.png';
 
+import first from './assets/stories/1.png';
+import second from './assets/stories/2.png';
+import third from './assets/stories/3.png';
+import fourth from './assets/stories/4.png';
+
+
 
 import {Answer} from "@/components/Test/models/types.ts";
 import {useMediaQuery} from "react-responsive";
 import {ResultsSection} from "@/components/TestResult/animation/result.tsx";
-import exportAsImage from "@/components/TestResult/download";
+// import exportAsImage from "@/components/TestResult/download";
 
-const results: Record<string, { title: string; description: string, image: string }> = {
+const results: Record<string, { title: string; description: string, image: string, downloadImage: string }> = {
   A: {
     title: "Безнадежный романтик!",
     description: "Тебе знакомо чувство любви, и ты стремишься одаривать им своего партнера. Ты продумываешь День святого Валентина до мелочей, не упуская важных деталей — будь это милый сюрприз, букет любимых цветов или любовное послание. Для тебя этот праздник — повод напомнить любимому человеку, как сильно ты его ценишь.",
-    image: roman
+    image: roman,
+    downloadImage: first
   },
   B: {
     title: "Душа любой компании!",
     description: "Ты обожаешь веселиться и не особо следуешь традициям, потому что праздник у тебя каждый день. Тебя обожают друзья, потому что ты всегда за «любой кипиш». Для тебя этот праздник — повод повеселиться и провести день с близкими друзьями.",
-    image: dusha
+    image: dusha,
+    downloadImage: second
   },
   C: {
     title: "Настоящий философ!",
     description: "Ты не особо привязан/а к этому празднику, потому что веришь, что любовь не подвластна датам. Ты ценишь уединение и личную жизнь, возможно, предпочитаешь держать ее в тайне. Для тебя этот праздник — просто еще один повод для людей тратить деньги на подарки/сюрпризы и признаваться друг другу в любви.",
-    image: phylosophy
+    image: phylosophy,
+    downloadImage: third
   },
   D: {
     title: "Сам себе Валентин!",
     description: "Ты ценишь комфорт в любых его проявлениях: вечер за просмотром любимого сериала и вкусной едой — уже праздник. Для тебя 14 февраля — праздник заботы о себе, когда можно сделать что-то приятное именно для себя.",
-    image: val
+    image: val,
+    downloadImage: fourth
   }
 };
 
@@ -86,15 +96,13 @@ export const ValentineQuiz: React.FC<{
   const sortedArray = normalizedAnswers.sort(
     (a, b) => (b[1] as number) - (a[1] as number) || (a[0] as string).localeCompare(b[0] as string)
   );
-  console.log(sortedArray)
-
 
   const componentRef = useRef(null);
-
   const inView = useInView(componentRef, {once: true, amount: 0.3});
   const isMobile = useMediaQuery({maxWidth: 768});
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const resultTypes = useMemo(() => Object.keys(results), []);
   const totalSlides = resultTypes.length;
@@ -113,25 +121,34 @@ export const ValentineQuiz: React.FC<{
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  const handleDownload = useCallback(async () => {
-    if (!componentRef.current) return;
+  const currentResult = results[sortedArray[currentSlide][0]];
+
+  const handleDownload = async () => {
+    if (isDownloading) return;
 
     try {
-      await exportAsImage(
-        componentRef.current,
-        'valentine-quiz-result.png',
-        {
-          quality: 1.0,
-          scale: 2,
-          backgroundColor: '#ffffff' // Optional: ensure white background
-        }
-      );
-    } catch (error) {
-      console.error('Failed to download image:', error);
-    }
-  }, []);
+      setIsDownloading(true);
+      const currentResultType = sortedArray[currentSlide][0];
+      const imageUrl = results[currentResultType].downloadImage;
 
-  const currentResult = results[sortedArray[currentSlide][0]];
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `valentine-result-${currentResultType}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading image:", error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col overflow-hidden z-1" ref={componentRef}>
       <div className="relative flex-1" ref={refAfterClickResult}>
